@@ -6,6 +6,7 @@ snake[0] = {
     x: 8 * bloco,
     y: 8 * bloco
 }
+let direction = "right";
 
 function criarBG() {
     context.fillStyle = "lightgreen";
@@ -19,5 +20,29 @@ function criarCobrinha() {
     }
 }
 
-criarBG();
-criarCobrinha();
+function iniciarJogo() {
+    
+    criarBG();
+    criarCobrinha();
+
+    let snakex = snake[0].x;
+    let snakey = snake[0].y;
+
+    if(direction == "right") snakex += bloco; //adiciona um bloco 
+    if(direction == "left") snakex -= bloco; //retira um bloco
+    if(dicrection == "up") snakey -= bloco;
+    if(direction == "down") snakey += bloco;
+
+    snake.pop();
+
+    let newHead = {
+        x: snakex,
+        y: snakey
+    }
+
+    snake.unshift(newHead);
+    
+}
+
+let jogo = setInterval(iniciarJogo, 100); //a cada 100ms a tela é renovada e atualiza o jogo
+
